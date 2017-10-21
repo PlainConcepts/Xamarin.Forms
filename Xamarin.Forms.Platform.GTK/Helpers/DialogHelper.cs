@@ -105,11 +105,11 @@ namespace Xamarin.Forms.Platform.GTK.Helpers
 
         private static void AddExtraButtons(ActionSheetArguments arguments, MessageDialog messageDialog)
         {
-            var vbox = messageDialog.VBox;
+            var newVBox = new VBox(messageDialog.VBox.Homogeneous, messageDialog.VBox.Spacing);
 
             // As we are not showing any message in this dialog, we just 
             // hide default container and avoid it from using space
-            vbox.Children[0].Hide();
+            messageDialog.VBox.Children[0].Hide();
 
             if (arguments.Buttons.Any())
             {
@@ -124,8 +124,24 @@ namespace Xamarin.Forms.Platform.GTK.Helpers
                     };
                     button.Show();
 
-                    vbox.PackStart(button, false, false, 0);
+                    newVBox.PackStart(button, false, false, 0);
                 }
+            }
+            newVBox.Show();
+
+            int maxScrollHeight = (int)(0.6 * messageDialog.Screen.Height);
+            if (newVBox.SizeRequest().Height >= maxScrollHeight) {
+                var scrolledWindow = new ScrolledWindow();
+                scrolledWindow.HscrollbarPolicy = PolicyType.Automatic;
+                scrolledWindow.VscrollbarPolicy = PolicyType.Always;
+                scrolledWindow.BorderWidth = 0;
+                scrolledWindow.HeightRequest = maxScrollHeight;
+                scrolledWindow.AddWithViewport(newVBox);
+                scrolledWindow.Show();
+
+                messageDialog.VBox.PackStart(scrolledWindow,false,false,0);
+            } else {
+                messageDialog.VBox.PackStart(newVBox,false,false,0);
             }
         }
     }
