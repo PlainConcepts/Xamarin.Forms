@@ -37,6 +37,9 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
                     // Use gtk.HScale, a horizontal slider widget for selecting a value from a range.
                     SetNativeControl(new Gtk.HScale(_minimum, _maximum, stepping));
                     Control.ValueChanged += OnControlValueChanged;
+
+                    // Hide the slider value (for consistency with other XF Platforms)
+                    Control.DrawValue = false;
                 }
 
                 UpdateMaximum();
