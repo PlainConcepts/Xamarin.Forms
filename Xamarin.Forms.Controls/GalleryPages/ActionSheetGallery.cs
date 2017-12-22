@@ -26,6 +26,35 @@ namespace Xamarin.Forms.Controls
 				"Extra Eleven",
 			};
 
+
+			var extras25 = new string[] {
+				"Extra One",
+				"Extra Two",
+				"Extra Three",
+				"Extra Four",
+				"Extra Five",
+				"Extra Six",
+				"Extra Seven",
+				"Extra Eight",
+				"Extra Nine",
+				"Extra Ten",
+				"Extra Eleven",
+				"Extra Twelve",
+				"Extra Thirteen",
+				"Extra Fourteen",
+				"Extra Fifteen",
+				"Extra Sixteen",
+				"Extra Seventeen",
+				"Extra Eightteen",
+				"Extra Nineteen",
+				"Extra Twenty",
+				"Extra Twenty-one",
+				"Extra Twenty-two",
+				"Extra Twenty-three",
+				"Extra Twenty-four",
+				"Extra Twenty-five",
+			};
+
 			Content = new ScrollView {
 				Content = new StackLayout {
 					Spacing = 0,
@@ -45,6 +74,7 @@ namespace Xamarin.Forms.Controls
 						MakeActionSheetButton (this, "ActionSheet Title Destruction", "Title", null, "Destruction"),
 						MakeActionSheetButton (this, "ActionSheet Title Destruction Extras", "Title", null, "Destruction", extras),
 						MakeActionSheetButton (this, "ActionSheet Title Extras", "Title", null, null, extras),
+						MakeActionSheetButton (this, "ActionSheet Title Cancel Destruction 25xExtras", "Title", "Cancel", "Destruction", extras25),
 					}
 				}
 			};
